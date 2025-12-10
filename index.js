@@ -17,6 +17,10 @@ const app=express();
 
 
 app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE",
+}));
 app.use(bodyParser.json());
 // app.get("/addHoldings",async(req,res)=>{
 // let tempHoldings=[
@@ -186,6 +190,9 @@ app.use(bodyParser.json());
 
 // });
 
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
 
 app.get("/allHoldings",async(req,res)=>{
   let allHoldings=await HoldingsModel.find({});
